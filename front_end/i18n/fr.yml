@@ -1,0 +1,29 @@
+---
+fr:
+  app_title: Smovin Indexation des loyers
+  views:
+    layout:
+      Rent_Indexation: Indexation des loyers
+    index:
+      calculate: Calculer
+      Contract_start_date: Date de début du contrat
+      base_index: Indice de base
+      base_rent: Loyer de base
+      brussels: Bruxelles
+      close_result: Fermer le résultat
+      compute_rent: Calculer le loyer indexé
+      contract_signed_on: Contrat signé le
+      currency: La Devise
+      current_index: Indice actuel
+      enter_current_date: Entrez la date du jour
+      enter_signed_date: Entrez la date de signature du contrat le
+      enter_start_date: Entrez la date de début du contrat
+      flanders: Flandre
+      hello: Bonjour
+      optional_current_date: Date du jour facultative
+      optional_help: Utilisez-le pour effectuer des recherches historiques.
+      region: Région
+      rent_result: Résultat de l’indexation des loyers
+      wallonia: Wallonie
+      your_amounts: 'Les montants de vos loyers indexés sont les suivants :'
+      panel_title: "Veuillez remplir pour recevoir votre nouvelle indexation"

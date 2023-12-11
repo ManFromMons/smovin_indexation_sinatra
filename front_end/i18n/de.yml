@@ -1,0 +1,28 @@
+de:
+  app-title: Smovin Miet-Indexierung
+  views:
+    layout:
+      Rent_Indexation: Miet-Indexierung
+    index:
+      calculate: Berechnung
+      Contract_start_date: Datum des Vertragsbeginns
+      base_index: Basisindex
+      base_rent: Grundmiete
+      brussels: Brussel
+      close_result: Ergebnis schließen
+      compute_rent: Indexierte Miete berechnen
+      contract_signed_on: Vertrag unterzeichnet am
+      currency: Währung
+      current_index: Aktueller Index
+      enter_current_date: Aktuelles Datum eingeben
+      enter_signed_date: Datum eingeben, an dem der Vertrag unterzeichnet wurde
+      enter_start_date: Datum des Vertragsbeginns eingeben
+      flanders: Flandern
+      hello: Hallo
+      optional_current_date: Optionales aktuelles Datum
+      optional_help: Verwenden Sie diese Option, um historische Suchvorgänge durchzuführen.
+      region: Region
+      rent_result: Ergebnis der Mietindexierung
+      wallonia: Wallonien
+      your_amounts: Ihre indexierten Mietbeträge sind
+      panel_title: "Bitte füllen Sie das Formular aus, um Ihre neue Indexierung zu erhalten"

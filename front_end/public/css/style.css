@@ -1,0 +1,17 @@
+.region-btn input[type="radio"] {
+    width:0; height: 0;
+}
+
+.dark .region-btn input[type="radio"]:checked + label {
+    border-color: hsl(0deg, 0%, 100%);
+    color: hsl(0deg, 0%, 100%);
+}
+.dark .region-btn input[type="radio"] + label {
+    border-color: hsl(0deg, 0%, 0%);
+    color: hsl(0deg, 0%, 65%);
+}
+.region-btn input[type="radio"]:checked + label {
+    border-color: hsl(0deg, 0%, 29%);
+    color: hsl(0deg, 0%, 21%);
+}
+

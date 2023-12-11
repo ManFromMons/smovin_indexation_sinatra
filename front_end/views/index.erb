@@ -1,0 +1,159 @@
+<article class="panel is-inline-block" data-controller="IndexationForm">
+  <p class="panel-heading">
+    <%= t("views.index.panel_title") %>
+  </p>
+  <form>
+    <div class="panel-block is-inline-block">
+      <div class="block is-inline-block">
+        <div class="columns is-vcentered block">
+          <div class="column is-one-third">
+            <div class="field box">
+              <label class="label" for="start_date">
+                <%= t('views.index.Contract_start_date') %>
+              </label>
+              <div class="control">
+                <input class="input" type="date" name="start_date" id="start_date"
+                       value="2010-09-01"
+                       required placeholder='<%= t("views.index.enter_start_date") %>'>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="field box">
+              <label class="label" for="signed-on">
+                <%= t('views.index.contract_signed_on') %>
+              </label>
+              <div class="control">
+                <input class="input" type="date" name="signed_on" id="signed_on"
+                       value="2010-07-25"
+                       required placeholder='<%= t("views.index.enter_signed_date") %>'>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="field box">
+              <label class="label" for="current_date">
+                <%= t('views.index.optional_current_date') %>
+              </label>
+              <div class="control">
+                <input class="input" type="date" name="current_date" id="current_date"
+                       value="2020-01-01"
+                       placeholder='<%= t("views.index.enter_current_date") %>'>
+              </div>
+              <p class="help"><%= t("views.index.optional_help") %></p>
+              <div class="buttons are-small mt-3">
+                <button type="button" class="button is-link is-light" id="setCurrentBtn">Today</button>
+                <button type="button" class="button is-link is-light" id="clearCurrentBtn">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-vcentered block">
+          <div class="column">
+            <div class="box">
+              <label class="label" for="base_rent">
+                <%= t('views.index.base_rent') %>
+              </label>
+              <div class="field has-addons">
+                <div class="control has-icons-left">
+                  <input class="input" type="number" name="base_rent" id="base_rent"
+                         value="500"
+                         required placeholder='<%= t("views.index.enter_current_date") %>'>
+                  <span class="icon is-small is-left" id="currency_symbol">€</span>
+                </div>
+                <p class="control">
+              <span class="select">
+              <select id="currency_dropdown">
+                <option selected="selected">EUR</option>
+                <option>GBP</option>
+                <option>USD</option>
+              </select>
+              </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field box">
+              <label class="label"><%= t("views.index.region") %></label>
+              <div class="buttons">
+                <div class="region-btn">
+                  <input type="radio" id="region-choice-b" name="region"
+                         value="brussels" class="is-invisible" checked>
+                  <label class="button" for="region-choice-b">
+                    <%= t('views.index.brussels') %>
+                  </label>
+                </div>
+                <div class="region-btn">
+                  <input type="radio" id="region-choice-f" name="region"
+                         value="flanders" class="is-invisible">
+                  <label class="button" for="region-choice-f">
+                    <%= t('views.index.flanders') %>
+                  </label>
+                </div>
+                <div class="region-btn">
+                  <input type="radio" id="region-choice-w" name="region"
+                         value="wallonia" class="is-invisible">
+                  <label class="button" for="region-choice-w">
+                    <span id="btn_wlny">
+                      <%= t('views.index.wallonia') %>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="panel-block">
+    <div class=field">
+      <button type="button" class="button is-primary is-large" id="submitBtn">
+        <span><%= t("views.index.calculate") %></span>
+      </button>
+      <span class="help" id="generalErrorDetails"></span>
+    </div>
+  </div>
+</article>
+<div class="modal" id="resultModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title"><%= t('views.index.rent_result') %></p>
+      <button class="delete" data-action="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <p class="is-small mb-4"><%= t('views.index.your_amounts') %>
+        <span class="is-large strong" id="newRentTarget">0.0</span>
+      </p>
+      <table class="box" style="width:60%">
+        <tr style="border-bottom: 3px solid #ccc">
+          <td style="text-align: center; vertical-align: middle;"><%= t('views.index.base_rent') %>
+            (<span data-indexation-target="baseRent" id="baseRentTarget" class="is-small strong">0.00</span>)
+          </td>
+          <td style="text-align: center; vertical-align: middle; width: 3em"><i class="fa-solid fa-xmark"></i>
+          </td>
+          <td style="text-align: center; vertical-align: middle;" class="dark: txt-white"><%= t('views.index.current_index') %>
+            (<span data-indexation-target="currentIndex" id="currentIndexTarget" class="strong">0.00</span>))
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: center; vertical-align: middle;" class="dark: txt-white">
+            <%= t('views.index.base_index') %>
+            (<span data-indexation-target="baseIndex" id="baseIndexTarget" class="strong">0.00</span>)
+          </td>
+        </tr>
+      </table>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" data-action="close">Close</button>
+    </footer>
+  </div>
+</div>
+<script type="module" charset="utf-8">
+    import IndexationForm from "/scripts/indexations.js";
+
+    let controller = new IndexationForm();
+    controller.connect(document.querySelector('[data-controller="IndexationForm"]'));
+</script>
