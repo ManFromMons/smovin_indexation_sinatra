@@ -25,10 +25,6 @@ class IndexationFrontEnd < Sinatra::Base
     end
   end
 
-  before do
-    # assign_request_locale
-  end
-
   get '/:locale?' do
     erb :index
   end
