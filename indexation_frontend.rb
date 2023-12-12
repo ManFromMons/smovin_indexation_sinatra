@@ -19,9 +19,9 @@ class IndexationFrontEnd < Sinatra::Base
     I18n.available_locales = %i[en fr de nl]
   end
 
-  ['/:locale'].each do |path|
+  ['/:locale?'].each do |path|
     before path do
-      #assign_request_locale if params[:locale]
+      assign_request_locale
     end
   end
 
