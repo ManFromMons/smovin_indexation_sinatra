@@ -27,6 +27,8 @@ export default class IndexationForm {
                 this.showResults(jsonData, data);
             }
         }).catch(error => {
+            this.enableSubmit();
+            this.clearLoadingFromSubmit()
             try {
                 if (typeof error === 'object') {
                     if (error.error) {
