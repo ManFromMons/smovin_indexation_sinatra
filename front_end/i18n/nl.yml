@@ -1,6 +1,7 @@
 ---
 nl:
-  app-title: Smovin Huurindexatie
+  app_title: Huurindexatie
+  app_subtitle: Een API-voorbeeld in Sinatra, het uitvoeren van Belgische indexatie-lookups en -berekeningen, een Bulma.io stijl en JS-modules voor controle
   views:
     layout:
       Rent_Indexation: Huurindexatie

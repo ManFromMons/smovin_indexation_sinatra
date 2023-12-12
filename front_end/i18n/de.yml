@@ -1,5 +1,6 @@
 de:
-  app-title: Smovin Miet-Indexierung
+  app_title: Miet-Indexierung
+  app_subtitle: Ein API-Beispiel in Sinatra, das belgische Indexierungssuchen und -berechnungen durchführt, ein Bulma.io Stil und JS-Module zur Steuerung
   views:
     layout:
       Rent_Indexation: Miet-Indexierung

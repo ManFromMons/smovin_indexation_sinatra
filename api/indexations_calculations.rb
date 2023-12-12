@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'date'
+require_relative 'helpers/date_calculations'
 
 # Provides indexation calculations
 module IndexationCalculations

@@ -1,6 +1,6 @@
 
 
-# smovin_indexation_sinatra
+# rent_indexation_sinatra
 
 A sample of a Sinatra API to pass the Indexation tests supplied as part of the challenge-master test.
 
@@ -52,7 +52,7 @@ Validation errors will follow this pattern:
 ## Installing the API
 Firstly:
 
-`gh repo clone ManFromMons/smovin_indexation_sinatra`
+`gh repo clone ManFromMons/rent_indexation_sinatra`
 
 change to the created folder and run`bundle install`.
 

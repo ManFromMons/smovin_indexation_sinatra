@@ -1,17 +1,68 @@
 .region-btn input[type="radio"] {
-    width:0; height: 0;
+    width: 0;
+    height: 0;
 }
 
 .dark .region-btn input[type="radio"]:checked + label {
     border-color: hsl(0deg, 0%, 100%);
     color: hsl(0deg, 0%, 100%);
 }
+
 .dark .region-btn input[type="radio"] + label {
     border-color: hsl(0deg, 0%, 0%);
     color: hsl(0deg, 0%, 65%);
 }
+
 .region-btn input[type="radio"]:checked + label {
     border-color: hsl(0deg, 0%, 29%);
     color: hsl(0deg, 0%, 21%);
 }
+
+.panel {
+    opacity: 0.95;
+}
+
+.box {
+    opacity: 1 !important;
+}
+
+#navsection {
+    transition: transform 0.6s;
+}
+
+#content-main {
+    /*margin-top: 225px;*/
+    transition: margin 0.4s;
+    position:relative;
+}
+
+#content-main:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url('/images/profile_6.svg');
+    filter: sepia(50%);
+}
+
+.scroll-up #content-main {
+    margin-top: 225px;
+}
+
+.scroll-down #content-main {
+    margin-top: 0;
+}
+
+.scroll-down #navsection {
+    transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up #navsection {
+    transform: none;
+}
+
 

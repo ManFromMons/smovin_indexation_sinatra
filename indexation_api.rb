@@ -5,10 +5,10 @@ require 'json'
 require 'net/http'
 require 'rack/cors'
 
-require './api/indexation_http'
-require './api/date_calculations'
-require './api/calculations'
-require './api/validations'
+require_relative 'api/providers/indexations_health_index'
+require_relative 'api/validations'
+require_relative 'api/parameters'
+require_relative 'api/indexations_calculations'
 
 # API to calculate rent api
 class IndexationAPI < Sinatra::Base
@@ -29,8 +29,8 @@ class IndexationAPI < Sinatra::Base
     content_type :json
 
     begin
-      request_body = api_params(JSON.parse(request.body.read))
-      validation_failed, data_details = Validations.valid?(request_body)
+      request_body = Parameters.indexations_api_params(JSON.parse(request.body.read))
+      validation_failed, data_details = IndexationsValidators.valid?(request_body)
 
       if validation_failed
         status 400
@@ -54,20 +54,9 @@ class IndexationAPI < Sinatra::Base
 
   private
 
-  def api_params(json_parameters)
-    parameters = json_parameters.keys
-    required_params = %w[start_date signed_on base_rent region]
-    all_params = %w[start_date signed_on current_date base_rent region]
-
-    raise "Parameter #{(required_params - parameters).first} missing" unless (required_params - parameters).empty?
-    raise "Unpermitted parameter #{(parameters - all_params).first}" unless (parameters - all_params).empty?
-
-    json_parameters
-  end
-
   def generate_answer(data_details)
     http_proc = proc { |target_date, base_year|
-      IndexationHTTP.get_health_index(base_year, target_date)
+      IndexationsHealthIndex.get_health_index(base_year, target_date)
     }
 
     new_rent, base_index, current_index = IndexationCalculations.calculate_new_rent(

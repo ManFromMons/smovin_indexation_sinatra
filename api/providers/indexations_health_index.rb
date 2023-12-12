@@ -4,7 +4,7 @@ require 'date'
 require 'net/http'
 
 # Provides HTTP functionality for api calculations
-module IndexationHTTP
+module IndexationsHealthIndex
   URL_ADDR = 'https://fi7661d6o4.execute-api.eu-central-1.amazonaws.com/prod/be/indexes/%s/%s-%s'
 
   def self.get_health_index(base_year, the_date)

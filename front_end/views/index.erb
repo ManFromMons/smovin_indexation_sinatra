@@ -54,7 +54,7 @@
               <label class="label" for="base_rent">
                 <%= t('views.index.base_rent') %>
               </label>
-              <div class="field has-addons">
+              <div class="field has-addons" data-controller="Currency">
                 <div class="control has-icons-left">
                   <input class="input" type="number" name="base_rent" id="base_rent"
                          value="500"
@@ -62,13 +62,13 @@
                   <span class="icon is-small is-left" id="currency_symbol">€</span>
                 </div>
                 <p class="control">
-              <span class="select">
-              <select id="currency_dropdown">
-                <option selected="selected">EUR</option>
-                <option>GBP</option>
-                <option>USD</option>
-              </select>
-              </span>
+                  <span class="select">
+                  <select id="currency_dropdown">
+                    <option selected="selected">EUR</option>
+                    <option>GBP</option>
+                    <option>USD</option>
+                  </select>
+                  </span>
                 </p>
               </div>
             </div>
@@ -152,8 +152,11 @@
   </div>
 </div>
 <script type="module" charset="utf-8">
-    import IndexationForm from "/scripts/indexations.js";
+    import IndexationForm from "/scripts/IndexationsController.js";
+    import CurrencyController from "/scripts/CurrencyController.js";
 
     let controller = new IndexationForm();
     controller.connect(document.querySelector('[data-controller="IndexationForm"]'));
+    let currencyController = new CurrencyController();
+    currencyController.connect(document.querySelector('[data-controller="Currency"]'));
 </script>

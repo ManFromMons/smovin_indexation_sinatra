@@ -125,11 +125,10 @@ export default class IndexationForm {
     }
 
     connect() {
-        console.log("connected");
         this.connectTargets();
         this.connectEvents();
         this.connectModal();
 
-        this.modalController.showModal();
+        this.modalController.closeModal();
     }
 }
