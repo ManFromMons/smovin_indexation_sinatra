@@ -4,7 +4,7 @@
 
 A sample of a Sinatra API to pass the Indexation tests supplied as part of the challenge-master test.
 
-Testing Sinatra installation : `ruby sa.rb` Starting the API: `rackup`
+Testing Sinatra installation: `ruby sa.rb` Starting the API: `rackup`
 
 The API is accessible on `/api/v1/indexations.` It will accept POSTs on the above address only.      
 POST the following JSON to the `/api/v1/indexations` endpoint:
@@ -61,7 +61,7 @@ If there are problems, try:
 `gem install Sinatra` `gem install Puma` `bundle install`
 
 This is *all* that should be required, if `bundle install` failed.  You can also try:      
-`gem install Rackup`
+`gem install Rackup` though there are version incompatibility issue with Rackup and Sinatra's dependency on versions of Rack < 3.x.
 
 > do this if there are rackup problems - caution - this might overwrite other installs
 
