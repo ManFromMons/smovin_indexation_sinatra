@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= I18n.locale %>">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-  <link rel="icon" type="image/png" href="images/favico.png"/>
+  <link rel="icon" type="image/png" href="images/profile_2_icon.png"/>
   <title><%= t('app_title') %></title>
   <link href="https://fonts.googleapis.com/css2?family=Give+You+Glory&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main-var.css" type="text/css" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/style.css" type="text/css" rel="stylesheet"/>
+  <link href="css/main-var.css" type="text/css" rel="stylesheet"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet"/>
   <script type="application/javascript">
       (function () {
           function setTheme(theme) {
-              console.log(`Theme ${theme}`);
               if (theme === 'dark') {
                   document.documentElement.classList.add('dark')
               } else {
@@ -26,22 +25,61 @@
               setTheme(e.matches ? 'dark' : 'light');
           });
 
-          setTheme(themeQuery.matches ? 'dark' : 'light');
+          setTheme(themeQuery.media.includes('dark') ? 'dark' : 'light');
       })();
   </script>
 </head>
 <body>
-<section class="hero">
+<section id="navsection" class="hero is-small is-primary">
   <div class="hero-body">
-    <p class="title">
-      <%= t("views.layout.Rent_Indexation") %>
-    </p>
+    <article class="media ">
+      <figure class="media-left">
+        <p class="image is-128x128">
+          <img alt="Julian's profile picture" src="/images/profile_6.svg" style="height:128px; height:128px"/>
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="">
+          <p class="title">
+            <%= t("views.layout.Rent_Indexation") %>
+          </p>
+          <p class="subtitle is-small">
+            <%= t("app_subtitle") %>
+          </p>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
-<main class="is-center">
+<main class="is-center pt-6" id="content-main">
   <div class="container is-fluid">
     <%= yield %>
   </div>
 </main>
+<script type="application/javascript">
+    let hero = document.querySelector("section.hero");
+    let main = document.querySelector("main");
+    let lastScroll = 0 ;
+    let bodyClass = document.body.classList ;
+    //main.style.marginTop = hero.offsetHeight + 'px';
+
+    /*window.addEventListener('scroll', (e) => {
+        //console.info (`scrollY: ${window.scrollY}`);
+        const currentScroll = window.scrollY;
+        //console.info (`currentScroll: ${currentScroll}`);
+        if (currentScroll <= 0 ) {
+            bodyClass.remove("scroll-up");
+            return;
+        }
+        if ( currentScroll > lastScroll && !bodyClass.contains("scroll-down")) {
+            bodyClass.remove("scroll-up");
+            bodyClass.add("scroll-down");
+        } else if ( currentScroll < lastScroll && bodyClass.contains("scroll-down")){
+            bodyClass.remove("scroll-down");
+            bodyClass.add("scroll-up");
+        }
+        lastScroll = currentScroll;
+    });*/
+</script>
 </body>
 </html>

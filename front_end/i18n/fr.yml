@@ -1,6 +1,7 @@
 ---
 fr:
-  app_title: Smovin Indexation des loyers
+  app_title: Indexation des loyers
+  app_subtitle: Un exemple d’API dans Sinatra, effectuant des recherches et des calculs d’indexation belges, un style Bulma.io et des modules JS pour le contrôle
   views:
     layout:
       Rent_Indexation: Indexation des loyers

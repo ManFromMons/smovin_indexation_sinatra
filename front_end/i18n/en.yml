@@ -1,5 +1,6 @@
 en:
-  app_title: Smovin Rent Indexation
+  app_title: Rent Indexation
+  app_subtitle: An API example in Sinatra, performing Belgian indexation lookups and calculations, a Bulma.io style and JS modules for control
   views:
     layout:
       Rent_Indexation: Rent Indexation
