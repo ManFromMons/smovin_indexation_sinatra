@@ -13,6 +13,8 @@ export default class IndexationForm {
 
         fetch("/api/v1/indexations", requestOptions)
             .then(response => {
+                this.enableSubmit();
+                this.clearLoadingFromSubmit()
                 if (!response.ok) {
                     return response.json().then(data => {
                         throw data;
@@ -50,9 +52,26 @@ export default class IndexationForm {
         })
     }
 
+    disableSubmit() {
+        this.submitBtn.disabled = true;
+    }
+
+    enableSubmit() {
+        this.submitBtn.disabled = false;
+    }
+
+    setSubmitToLoading() {
+        this.submitBtn.classList.add("is-loading");
+    }
+    clearLoadingFromSubmit() {
+        this.submitBtn.classList.remove("is-loading");
+    }
+
     onsubmit(event) {
         if (this.inputFormTarget.checkValidity()) {
             this.clearResult();
+            this.setSubmitToLoading();
+            this.disableSubmit();
             let jsonData = {
                 "start_date": this.inputFormTarget.start_date.value,
                 "signed_on": this.inputFormTarget.signed_on.value,
@@ -63,8 +82,7 @@ export default class IndexationForm {
 
             console.log(jsonData);
 
-            let jsonResult = this.getIndexationData(jsonData);
-            console.log(jsonResult);
+            this.getIndexationData(jsonData);
         } else {
             event.stopPropagation();
             const invalidFields = this.inputFormTarget.querySelectorAll(':invalid');
