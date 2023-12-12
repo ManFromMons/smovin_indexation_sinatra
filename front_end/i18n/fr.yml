@@ -6,6 +6,8 @@ fr:
     layout:
       Rent_Indexation: Indexation des loyers
     index:
+      errors:
+        no-data: Aucune donnée n’a été reçue
       calculate: Calculer
       Contract_start_date: Date de début du contrat
       base_index: Indice de base

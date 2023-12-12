@@ -5,6 +5,8 @@ en:
     layout:
       Rent_Indexation: Rent Indexation
     index:
+      errors:
+        no-data: No data has been received
       calculate: Calculate
       Contract_start_date: Contract start date
       base_index: Base Index

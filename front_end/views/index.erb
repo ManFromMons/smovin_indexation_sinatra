@@ -112,7 +112,10 @@
       <button type="button" class="button is-primary is-large" id="submitBtn">
         <span><%= t("views.index.calculate") %></span>
       </button>
-      <span class="help" id="generalErrorDetails"></span>
+      <span class="help" id="generalErrorDetails">
+        <span class="is-invisible" data-error="no-data"><%=t ('views.index.errors.no-data') %></span>
+        <span data-error="any-error"></span>
+      </span>
     </div>
   </div>
 </article>

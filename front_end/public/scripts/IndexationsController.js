@@ -1,7 +1,18 @@
 import ModalController from './ModalController.js';
 export default class IndexationForm {
     showErrorMessage(data) {
-        this.errorDetailsTarget.textContent = data;
+        this.errorDetailsTarget.querySelector(`[data-error="any-error"]`).textContent = data;
+    }
+
+    clearErrorMessage() {
+        this.errorDetailsTarget.querySelector(`[data-error="any-error"]`).textContent = "";
+    }
+
+    showKnownError(key) {
+        this.errorDetailsTarget.querySelector(`[data-error="${key}"]`).classList.remove('is-invisible');
+    }
+    hideKnownError(key) {
+        this.errorDetailsTarget.querySelector(`[data-error="${key}"]`).classList.add('is-invisible');
     }
 
     getIndexationData(jsonData) {
@@ -40,16 +51,15 @@ export default class IndexationForm {
                             if (errorObject.hasOwnProperty(key)) {
                                 console.log(`Errors for ${key}:`);
                                 for (const errorMessage of errorObject[key]) {
-                                    console.log(`- ${errorMessage}`);
+                                    console.log(`${key} - ${errorMessage}`);
                                 }
                             }
                         }
-                        this.showErrorMessage(jsonError)
+                        this.showErrorMessage(jsonError);
                     }
                 }
             } catch (e) {
-                console.log("No data received");
-                this.showErrorMessage("No data has been received.")
+                this.showKnownError("no-data");
             }
         })
     }
@@ -106,7 +116,8 @@ export default class IndexationForm {
         this.modalController.showModal();
     }
     clearResult() {
-        this.errorDetailsTarget.textContent = "";
+        this.clearErrorMessage();
+        this.hideKnownError('no-data');
         this.newRentTarget.textContent = "";
         this.baseIndexTarget.textContent = "";
         this.currentIndexTarget.textContent = "";

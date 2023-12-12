@@ -6,6 +6,8 @@ nl:
     layout:
       Rent_Indexation: Huurindexatie
     index:
+      errors:
+        no-data: Er zijn geen gegevens ontvangen
       calculate: Berekenen
       Contract_start_date: Ingangsdatum van het contract
       base_index: Basisindex
