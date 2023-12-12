@@ -531,6 +531,16 @@ a.box:active {
     box-shadow: var(--box-link-active-shadow);
 }
 
+:root.dark {
+    --button-color: brighten(var(--grey),20%);
+    --button-background-color: var(--grey-dark);
+    --button-border-color: var(--grey-lighter);
+    --button-active-border-color: var(--grey-light);
+    --button-active-color: var(--grey-lighter);
+    --button-hover-color: var(--grey-lighter);
+    --button-hover-border-color: var(--white);
+}
+
 :root {
     --button-color: var(--text-strong, #363636);
     --button-background-color: var(--scheme-main, white);
@@ -5864,6 +5874,12 @@ button.dropdown-item.is-active {
     padding: var(--modal-card-body-padding);
 }
 
+.modal-card-body.is-center {
+    justify-content: center;
+}
+.box.is-center {
+    margin: auto;
+}
 :root {
     --navbar-background-color: var(--scheme-main, white);
     --navbar-box-shadow-size: 0 2px 0 0;
