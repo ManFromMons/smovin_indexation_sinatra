@@ -1,24 +1,34 @@
 # frozen_string_literal: true
 
 require 'date'
-require_relative 'helpers/date_calculations'
+require_relative '../helpers/date_calculations'
 
 # Provides indexation calculations
 module IndexationCalculations
   include DateCalculations
 
-  def self.calculate_new_rent(start_date, signed_on, base_rent, target_date, &health_index)
+  def generate_answer(data_details, &)
+    new_rent, base_index, current_index = IndexationCalculations.calculate_new_rent(
+      data_details[:start_date], data_details[:signed_on],
+      data_details[:base_rent], data_details[:current_date],
+      &
+    )
+
+    [new_rent, base_index, current_index]
+  end
+
+  def self.calculate_new_rent(start_date, signed_on, base_rent, target_date, &)
     index_calculator = IndexCalculator.new
     new_rent, base_index, current_index = index_calculator.perform(start_date, signed_on, base_rent,
-                                                                   target_date, &health_index)
+                                                                   target_date, &)
 
     [new_rent, base_index, current_index]
   end
 
   # Private encapsulation of the functions
   class IndexCalculator
-    def perform(start_date, signed_on, base_rent, current_date, &health_index)
-      calculate_new_rent(start_date, signed_on, base_rent, current_date, &health_index)
+    def perform(start_date, signed_on, base_rent, current_date, &)
+      calculate_new_rent(start_date, signed_on, base_rent, current_date, &)
     end
 
     private

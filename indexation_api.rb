@@ -5,13 +5,21 @@ require 'json'
 require 'net/http'
 require 'rack/cors'
 
-require_relative 'api/providers/indexations_health_index'
-require_relative 'api/validations'
-require_relative 'api/parameters'
-require_relative 'api/indexations_calculations'
+require_relative 'api/exceptions/validation_exception'
+require_relative 'api/handlers/indexations_request_handler'
 
 # API to calculate rent api
 class IndexationAPI < Sinatra::Base
+  include IndexationsRequestHandler
+  def filter_backtrace(backtrace)
+    app_path = File.expand_path(__dir__) # Path to your application's directory
+
+    backtrace.select do |line|
+      file_path = line.split(':').first # Extracting the file path from the backtrace line
+      File.realpath(file_path).start_with?(app_path) # Check if the file path is within your app's directory
+    end
+  end
+
   use Rack::Cors do
     allow do
       origins '*'
@@ -29,20 +37,13 @@ class IndexationAPI < Sinatra::Base
     content_type :json
 
     begin
-      request_body = Parameters.indexations_api_params(JSON.parse(request.body.read))
-      validation_failed, data_details = IndexationsValidators.valid?(request_body)
-
-      if validation_failed
-        status 400
-        data_details.to_json
-        break
-      end
-
-      new_rent, base_index, current_index = generate_answer(data_details)
-
       status 200
-      { new_rent:, base_index:, current_index: }.to_json
+      process_indexations_post_request request
+    rescue ValidationException => e
+      status 400
+      e.error_collection.to_json
     rescue Net::HTTPError, JSON::ParserError, StandardError => e
+      $stdout << "#{e.message}\n#{(filter_backtrace e.backtrace).join('\n')}"
       status 500 if e.is_a? Net::HTTPError
       status 400
       {
@@ -51,20 +52,4 @@ class IndexationAPI < Sinatra::Base
     end
   end
   # rubocop:enable Lint/ShadowedException
-
-  private
-
-  def generate_answer(data_details)
-    http_proc = proc { |target_date, base_year|
-      IndexationsHealthIndex.get_health_index(base_year, target_date)
-    }
-
-    new_rent, base_index, current_index = IndexationCalculations.calculate_new_rent(
-      data_details[:start_date], data_details[:signed_on],
-      data_details[:base_rent], data_details[:current_date],
-      &http_proc
-    )
-
-    [new_rent, base_index, current_index]
-  end
 end

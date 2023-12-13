@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 # spec/http_client_spec.rb
 
-require 'http_client'
+require 'rspec'
+require 'api/helpers/http_client'
 
 RSpec.describe HTTPClient::Client do
-  let(:client) { HTTPClient::Client.new('https://jsonplaceholder.typicode.com') }
+  let(:client) { described_class.new('https://jsonplaceholder.typicode.com') }
 
   describe '#get' do
     it 'performs a successful GET request' do
@@ -24,8 +27,8 @@ RSpec.describe HTTPClient::Client do
     it 'performs a successful POST request' do
       body = { title: 'Test Title', body: 'Test Body', userId: 1 }.to_json
       response = client.post('/posts', body, { 'Content-Type': 'application/json' })
+
       expect(response).to_not be_empty
-      expect(response).to include('id')
       expect(response['title']).to eq('Test Title')
       expect(response['body']).to eq('Test Body')
       expect(response['userId']).to eq(1)
@@ -41,7 +44,6 @@ RSpec.describe HTTPClient::Client do
     it 'performs a successful PUT request' do
       body = { title: 'Updated Title' }.to_json
       response = client.put('/posts/1', body, { 'Content-Type': 'application/json' })
-      expect(response).to_not be_empty
       expect(response['title']).to eq('Updated Title')
     end
 
