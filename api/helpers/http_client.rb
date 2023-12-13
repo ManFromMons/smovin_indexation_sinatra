@@ -4,17 +4,6 @@ require 'net/http'
 require 'uri'
 
 # A provider of HTTP activities in the API and application as a whole
-# It will provide our simple HTTP requirements
-# Example usage:
-# client = HTTPClient::Client.new('https://jsonplaceholder.typicode.com')
-#
-# GET request
-# response = client.get('/posts/1')
-# puts "GET Response: #{response}"
-#
-# POST request
-# response = client.post('/posts', { title: 'foo', body: 'bar', userId: 1 }.to_json, { 'Content-Type': 'application/json' })
-# puts "POST Response: #{response}"
 module HTTPClient
   # A specific HTTPError exception to collate all other errors produced here
   class HTTPError < StandardError; end

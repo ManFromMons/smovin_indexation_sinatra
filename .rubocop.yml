@@ -1,0 +1,12 @@
+require:
+  - rubocop-rspec
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'

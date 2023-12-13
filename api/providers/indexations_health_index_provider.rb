@@ -4,11 +4,11 @@ require 'date'
 require 'net/http'
 
 # Provides HTTP functionality for api calculations
-module IndexationsHealthIndex
+module IndexationsHealthIndexProvider
   URL_ADDR = 'https://fi7661d6o4.execute-api.eu-central-1.amazonaws.com/prod/be/indexes/%s/%s-%s'
 
-  def self.get_health_index(base_year, the_date)
-    gov_data = call_service base_year, the_date
+  def get_health_index(base_year, the_date)
+    gov_data = IndexationsHealthIndexProvider.call_service base_year, the_date
 
     raise "No service data for #{base_year}:#{the_date}" if gov_data.nil?
 

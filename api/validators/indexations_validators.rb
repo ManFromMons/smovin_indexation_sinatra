@@ -2,13 +2,9 @@
 
 # Provides validators for the Calculator
 module IndexationsValidators
-  # rubocop:disable Metrics/MethodLength
-  def self.valid?(json_data)
-    start_date = json_data['start_date']
-    signed_on = json_data['signed_on']
-    current_date = json_data.key?('current_date') && !json_data['current_date'].blank? ? json_data['current_date'] : Date.today.strftime('%Y-%m-%d')
-    base_rent = json_data['base_rent']
-    region = json_data['region']
+  def valid?(json_data)
+    start_date, signed_on, base_rent, region = json_data.values_at('start_date', 'signed_on', 'base_rent', 'region')
+    current_date = get_current_date(json_data)
 
     validation_actions = ValidationActions.new
 
@@ -21,7 +17,13 @@ module IndexationsValidators
               region: }]
   end
 
-  # rubocop:enable Metrics/MethodLength
+  def get_current_date(json_data)
+    if json_data['current_date'].nil? || json_data['current_date'].empty?
+      Date.today.strftime('%Y-%m-%d')
+    else
+      json_data['current_date']
+    end
+  end
 
   # Private modularisation of validation functions
   class ValidationActions
