@@ -28,9 +28,6 @@ GEM
     rack-protection (3.1.0)
       rack (~> 2.2, >= 2.2.4)
     rack-unreloader (2.1.0)
-    rackup (1.0.0)
-      rack (< 3)
-      webrick
     rainbow (3.1.1)
     regexp_parser (2.8.3)
     rexml (3.2.6)
@@ -84,7 +81,6 @@ GEM
     tilt (2.3.0)
     unicode-display_width (2.5.0)
     uri (0.13.0)
-    webrick (1.8.1)
 
 PLATFORMS
   x86_64-linux
@@ -98,7 +94,6 @@ DEPENDENCIES
   rack
   rack-cors
   rack-unreloader
-  rackup
   rspec
   rubocop
   rubocop-rspec
