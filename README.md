@@ -1,10 +1,24 @@
-
-
 # rent_indexation_sinatra
 
-A sample of a Sinatra API to pass the Indexation tests supplied as part of the challenge-master test.
+A sample of a Sinatra API to pass the Indexation tests as supplied as part of the challenge-master test.
 
-Testing Sinatra installation: `ruby sa.rb` Starting the API: `rackup`
+## Installing the API
+Firstly:
+
+`gh repo clone ManFromMons/rent_indexation_sinatra`
+
+change to the created folder and run`bundle install`.
+
+If there are problems, try:
+
+`gem install Sinatra` `gem install Puma` `bundle install`
+
+This is *all* that should be required, if `bundle install` fails.  You can also try:      
+`gem install Rackup` though there are version incompatibility issues with Rackup and Sinatra's dependency on versions of Rack < 3.x.
+
+> Do this if there are rackup problems - caution - this might overwrite other installs
+
+To test the Sinatra installation: `ruby sa.rb` Starting the API and UI: `rackup`
 
 The API is accessible on `/api/v1/indexations.` It will accept POSTs on the above address only.      
 POST the following JSON to the `/api/v1/indexations` endpoint:
@@ -17,8 +31,8 @@ POST the following JSON to the `/api/v1/indexations` endpoint:
 "region": "brussels"
 }`
 
-`current_date` is optional, it can be used to prove the results match the supplied request, or for other historical data.
-> It can be ommitted, in which case `today` is used
+`current_date` is optional, it can be used to prove the results match the supplied request or for other historical data.
+> It can be omitted, in which case `today` is used
 
 You will receive the following response:
 
@@ -49,33 +63,17 @@ Validation errors will follow this pattern:
     }
 
 
-## Installing the API
-Firstly:
-
-`gh repo clone ManFromMons/rent_indexation_sinatra`
-
-change to the created folder and run`bundle install`.
-
-If there are problems, try:
-
-`gem install Sinatra` `gem install Puma` `bundle install`
-
-This is *all* that should be required, if `bundle install` failed.  You can also try:      
-`gem install Rackup` though there are version incompatibility issue with Rackup and Sinatra's dependency on versions of Rack < 3.x.
-
-> do this if there are rackup problems - caution - this might overwrite other installs
-
-### Starting-up
+## Starting-up
 To test your install of the API, the entry point, `sa.rb` to be run with `ruby sa.rb` should produce the following or similar:
 
 `== Sinatra (v3.1.0) has taken the stage on 4567 for development with backup from Puma Puma starting in single mode... > * Puma version: 6.4.0 (ruby 3.2.2-p53) ("The Eagle of Durango") > *  Min threads: 0 > *  Max threads: 5 > *  Environment: development > *          PID: 98356 > * Listening on http://127.0.0.1:4567 > * Listening on http://[::1]:4567 Use Ctrl-C to stop`
 
 The API is a modular Sinatra application, and as such is started with `rackup`.  It is configured to use Puma.      
-You should receive similar output to the above if *rackup* is succesful.
+You should receive similar output to the above if *rackup* is successful.
 
 > The API has CORS integration to allow any origin to reach`/api/v1/*` with `GET`requests to '/' and `POST` requests to '/indexations' only.  `GET` requests to '/indexations' are not allowed and POSTs to '/' the same
 
-# What is the the repo
+# What is in the repo
 This is a modular Sinatra app.        
 There is a gemfile:
 
@@ -103,7 +101,7 @@ There are two route mappings:
 * `map '/' =>` the front-end
 * `map '/api/v1' =>` the API
 
-Each are contained in there own classes which are executed by Rack as `run IndexationFrontEnd` and `run IndexationAPI`.
+Each is contained with its classes which are executed by Rack as `run IndexationFrontEnd` and `run IndexationAPI`.
 
 > The unloader gem wraps these now, and it is the unloader that is executed
 
