@@ -11,14 +11,6 @@ require_relative 'api/handlers/indexations_request_handler'
 # API to calculate rent api
 class IndexationAPI < Sinatra::Base
   include IndexationsRequestHandler
-  def filter_backtrace(backtrace)
-    app_path = File.expand_path(__dir__) # Path to your application's directory
-
-    backtrace.select do |line|
-      file_path = line.split(':').first # Extracting the file path from the backtrace line
-      File.realpath(file_path).start_with?(app_path) # Check if the file path is within your app's directory
-    end
-  end
 
   use Rack::Cors do
     allow do
@@ -43,7 +35,6 @@ class IndexationAPI < Sinatra::Base
       status 400
       e.error_collection.to_json
     rescue Net::HTTPError, JSON::ParserError, StandardError => e
-      $stdout << "#{e.message}\n#{(filter_backtrace e.backtrace).join('\n')}"
       status 500 if e.is_a? Net::HTTPError
       status 400
       {
