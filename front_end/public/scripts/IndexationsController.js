@@ -38,7 +38,7 @@ export default class IndexationForm {
 
     async getIndexationData(jsonData) {
         const indexService = new HealthIndexService();
-        let responseStatus, data ;
+        let responseStatus, data;
 
         try {
             [responseStatus, data] = await indexService.fetchData(jsonData);
@@ -84,8 +84,6 @@ export default class IndexationForm {
                 )?.value,
                 current_date: this.inputFormTarget.current_date.value,
             };
-
-            console.log(jsonData);
 
             this.getIndexationData(jsonData);
         } else {

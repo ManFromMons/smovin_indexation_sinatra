@@ -16,22 +16,14 @@ export default class HealthIndexService {
                 })
             );
 
-            if (!response.ok) {
-                if (response.type !== "basic") {
-                    return [false, await response.json()];
-                } else {
-                    throw response.bodyUsed
-                        ? await response.body.text
-                        : response.statusText;
-                }
-            }
+            if (response.ok)
+                return [true, await response.json()];
+            if (response.status >= 400 && response.status < 500 )
+                return [false, await response.json()];
 
-            return [true, await response.json()];
+            return [false, await response.text()];
         } catch (e) {
-            console.error(e);
             throw e;
         }
-
-        return null;
     }
 }
