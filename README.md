@@ -1,6 +1,6 @@
 # rent_indexation_sinatra
 
-A sample of a Sinatra API to pass the Indexation tests as supplied as part of the challenge-master test.
+A sample of a Sinatra API to obtain the rent-indexation amount of a given rent.
 
 ## Installing the API
 Firstly:
